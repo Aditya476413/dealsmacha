@@ -1,352 +1,658 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Deals Macha</title>
-    
-    <link rel="stylesheet" href="style.css">
-    
-    </head><body><div class="loading-screen">
-    
-        <div class="loading-text">Welcome to Deals Macha</div>
-    
-    </div>
-    
-    <div class="particles">
-    
-        <div class="particle"></div>
-    
-        <div class="particle"></div>
-    
-        <div class="particle"></div>
-    
-        <div class="particle"></div>
-    
-        <div class="particle"></div>
-    
-        <div class="particle"></div>
-    
-        <div class="particle"></div>
-    
-        <div class="particle"></div>
-    
-        <div class="particle"></div>
-    
-        <div class="particle"></div>
-    
-    </div>
-    
+    <title>Macha Deals - Premium Shopping Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #ffd166;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark), #16213e);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-bar {
+            display: flex;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 8px 15px;
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: white;
+            outline: none;
+            width: 200px;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cart-icon, .user-icon {
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cart-icon:hover, .user-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.9)), url('https://placehold.co/1200x600/1a1a2e/ffffff?text=Macha+Deals+Hero') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+            border: 2px solid var(--primary);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Categories Section */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .category-card h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        /* Deals Section */
+        .deals-section {
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            padding: 50px 0;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .deal-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .deal-image {
+            height: 200px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .deal-content {
+            padding: 20px;
+        }
+
+        .deal-badge {
+            background: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .deal-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .deal-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .discount {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #3db9b1;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary), #ff8e8e);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            margin: 50px 0;
+        }
+
+        .newsletter h2 {
+            margin-bottom: 20px;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #0d0d1a;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+                border-radius: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
     <header>
-    
-        <h1>Deals Macha</h1>
-    
-        <div class="category-buttons">
-    
-            <button class="category-btn active" data-category="shirts">Shirts</button>
-    
-            <button class="category-btn" data-category="pants">Pants</button>
-    
-            <button class="category-btn" data-category="sarees">Sarees</button>
-    
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Macha<span>Deals</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-tags"></i> Deals</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-bag"></i> Categories</a></li>
+                    <li><a href="#"><i class="fas fa-star"></i> Featured</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for deals...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
         </div>
-    
     </header>
 
-    <div class="dropdown-bar" id="shirts-dropdown-bar">
-        <div class="custom-dropdown" id="custom-shirts-dropdown">
-            <div class="selected-option all-option">All Shirts</div>
-            <div class="dropdown-options" style="display: none;">
-                <div class="dropdown-option all-option" data-value="all">All Shirts</div>
-                <div class="dropdown-option" data-value="Casual Shirt">Casual Shirt</div>
-                <div class="dropdown-option" data-value="Formal Shirt">Formal Shirt</div>
-                <div class="dropdown-option" data-value="Party Shirt">Party Shirt</div>
-                <div class="dropdown-option" data-value="Summer Shirt">Summer Shirt</div>
-                <div class="dropdown-option" data-value="Designer Shirt">Designer Shirt</div>
-                <div class="dropdown-option" data-value="Premium Shirt">Premium Shirt</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Unbeatable Deals on Premium Products</h2>
+            <p>Discover the best discounts on top brands. Limited time offers. Shop now and save big!</p>
+            <a href="#" class="cta-button">Shop Today's Deals</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="container">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>Electronics</h3>
+                <p>Latest gadgets and devices</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h3>Fashion</h3>
+                <p>Trendy clothing & accessories</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Home & Kitchen</h3>
+                <p>Everything for your home</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3>Health & Beauty</h3>
+                <p>Wellness and self-care</p>
             </div>
         </div>
-    </div>
-    
-    <div class="dropdown-bar" id="pants-dropdown-bar">
-        <div class="custom-dropdown" id="custom-pants-dropdown">
-            <div class="selected-option all-option">All Pants</div>
-            <div class="dropdown-options" style="display: none;">
-                <div class="dropdown-option all-option" data-value="all">All Pants</div>
-                <div class="dropdown-option" data-value="Jeans">Jeans</div>
-                <div class="dropdown-option" data-value="Formal Pants">Formal Pants</div>
-                <div class="dropdown-option" data-value="Casual Pants">Casual Pants</div>
-                <div class="dropdown-option" data-value="Track Pants">Track Pants</div>
-                <div class="dropdown-option" data-value="Chinos">Chinos</div>
-                <div class="dropdown-option" data-value="Joggers">Joggers</div>
+    </section>
+
+    <!-- Deals Section -->
+    <section class="deals-section">
+        <div class="container">
+            <h2 class="section-title">Today's Hot Deals</h2>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <div class="deal-image">
+                        <i class="fas fa-headphones fa-3x"></i>
+                    </div>
+                    <div class="deal-content">
+                        <span class="deal-badge">HOT DEAL</span>
+                        <h3 class="deal-title">Wireless Bluetooth Headphones</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$79.99
+                            $129.99</span>
+                            <span class="discount">38% OFF</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="deal-card">
+                    <div class="deal-image">
+                        <i class="fas fa-mobile-alt fa-3x"></i>
+                    </div>
+                    <div class="deal-content">
+                        <span class="deal-badge">LIMITED</span>
+                        <h3 class="deal-title">Smartphone X Pro</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$599.99
+                            $799.99</span>
+                            <span class="discount">25% OFF</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="deal-card">
+                    <div class="deal-image">
+                        <i class="fas fa-watch fa-3x"></i>
+                    </div>
+                    <div class="deal-content">
+                        <span class="deal-badge">NEW</span>
+                        <h3 class="deal-title">Smart Watch Series 5</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$199.99
+                            $299.99</span>
+                            <span class="discount">33% OFF</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="deal-card">
+                    <div class="deal-image">
+                        <i class="fas fa-tablet-alt fa-3x"></i>
+                    </div>
+                    <div class="deal-content">
+                        <span class="deal-badge">BEST SELLER</span>
+                        <h3 class="deal-title">10-inch Tablet Pro</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$249.99
+                            $349.99</span>
+                            <span class="discount">29% OFF</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="dropdown-bar" id="sarees-dropdown-bar">
-        <div class="custom-dropdown" id="custom-sarees-dropdown">
-            <div class="selected-option all-option">All Sarees</div>
-            <div class="dropdown-options" style="display: none;">
-                <div class="dropdown-option all-option" data-value="all">All Sarees</div>
-                <div class="dropdown-option" data-value="Designer Saree">Designer Saree</div>
-                <div class="dropdown-option" data-value="Party Wear Saree">Party Wear Saree</div>
-                <div class="dropdown-option" data-value="Wedding Saree">Wedding Saree</div>
-                <div class="dropdown-option" data-value="Traditional Saree">Traditional Saree</div>
-            </div>
-        </div>
-    </div>
-    
-    <main class="products-container">
-    
-        <!-- Shirts Section -->
-    
-        <div class="category-section" id="shirts">
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/2/n/0/m-skyblue-check-jai-textiles-original-imahc7n9fccgegxj.jpeg?q=70&crop=false" alt="Shirt 1">
-    
-                <h3>Casual Shirt</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkgNHCuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    <div class="product-box">
-      <img src="https://rukminim1.flixcart.com/image/1960/2352/xif0q/boxer/e/d/m/s-1-blk-lycra-01-mblk-lycra-01-m-motards-original-imahfyhc6p8ys4jy.jpeg?q=60&crop=false" alt="Pant 1">
-      <h3>Jeans</h3>
-      <a href="https://www.wishlink.com/share/p96k6" class="buy-button" target="_blank">Buy Now</a>
-    </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/e/0/a/l-sksh-abc-120-pu-fubar-original-imah9juskp7cu276.jpeg?q=70&crop=false" alt="Shirt 2">
-    
-                <h3>Formal Shirt</h3>
-    
-                <a href="https://dl.flipkart.com/s/7EgKpbNNNN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    <div class="product-box">
-      <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/2/n/0/m-skyblue-check-jai-textiles-original-imahc7n9fccgegxj.jpeg?q=70&crop=false" alt="Pant 1">
-      <h3>deals</h3>
-      <a href="https://www.wishlink.com/share/xmj6w" class="buy-button" target="_blank">Buy Now</a>
-    </div>
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/t/4/r/m-kcsh-110-dusty-grn-fubar-original-imah4zezsjpgghqz.jpeg?q=70&crop=false" alt="Shirt 3">
-    
-                <h3>Party Shirt</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkBmpvuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/2/n/0/m-skyblue-check-jai-textiles-original-imahc7n9fccgegxj.jpeg?q=70&crop=false" alt="Shirt 4">
-    
-                <h3>Casual Shirt</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkgNHCuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/e/0/a/l-sksh-abc-120-pu-fubar-original-imah9juskp7cu276.jpeg?q=70&crop=false" alt="Shirt 5">
-    
-                <h3>Formal Shirt</h3>
-    
-                <a href="https://dl.flipkart.com/s/7EgKpbNNNN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/t/4/r/m-kcsh-110-dusty-grn-fubar-original-imah4zezsjpgghqz.jpeg?q=70&crop=false" alt="Shirt 6">
-    
-                <h3>Party Shirt</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkBmpvuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/t/4/r/m-kcsh-110-dusty-grn-fubar-original-imah4zezsjpgghqz.jpeg?q=70&crop=false" alt="Shirt 3">
-    
-                <h3>Party Shirt</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkBmpvuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/2/n/0/m-skyblue-check-jai-textiles-original-imahc7n9fccgegxj.jpeg?q=70&crop=false" alt="Shirt 4">
-    
-                <h3>Casual Shirt</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkgNHCuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-        </div>
-    
-    
-    
-        <!-- Pants Section -->
-    
-        <div class="category-section" id="pants" style="display: none;">
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/2/n/0/m-skyblue-check-jai-textiles-original-imahc7n9fccgegxj.jpeg?q=70&crop=false" alt="Pant 1">
-    
-                <h3>Jeans</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkgNHCuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/e/0/a/l-sksh-abc-120-pu-fubar-original-imah9juskp7cu276.jpeg?q=70&crop=false" alt="Pant 2">
-    
-                <h3>Formal Pants</h3>
-    
-                <a href="https://dl.flipkart.com/s/7EgKpbNNNN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/t/4/r/m-kcsh-110-dusty-grn-fubar-original-imah4zezsjpgghqz.jpeg?q=70&crop=false" alt="Pant 3">
-    
-                <h3>Casual Pants</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkBmpvuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/2/n/0/m-skyblue-check-jai-textiles-original-imahc7n9fccgegxj.jpeg?q=70&crop=false" alt="Pant 4">
-    
-                <h3>Track Pants</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkgNHCuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/e/0/a/l-sksh-abc-120-pu-fubar-original-imah9juskp7cu276.jpeg?q=70&crop=false" alt="Pant 5">
-    
-                <h3>Chinos</h3>
-    
-                <a href="https://dl.flipkart.com/s/7EgKpbNNNN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/t/4/r/m-kcsh-110-dusty-grn-fubar-original-imah4zezsjpgghqz.jpeg?q=70&crop=false" alt="Pant 6">
-    
-                <h3>Joggers</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkBmpvuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/t/4/r/m-kcsh-110-dusty-grn-fubar-original-imah4zezsjpgghqz.jpeg?q=70&crop=false" alt="Pant 3">
-    
-                <h3>Casual Pants</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkBmpvuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    <div class="product-box">
-      <img src="https://im.ge/i/1000037854.J17F2x" alt="Pant 1">
-      <h3>Jeans</h3>
-      <a href="https://www.wishlink.com/share/xmj6w" class="buy-button" target="_blank">Buy Now</a>
-    </div>
-    <div class="product-box">
-      <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/2/n/0/m-skyblue-check-jai-textiles-original-imahc7n9fccgegxj.jpeg?q=70&crop=false" alt="Pant 1">
-      <h3>Jeans</h3>
-      <a href="https://www.wishlink.com/share/p96k6" class="buy-button" target="_blank">Buy Now</a>
-    </div>
-    <div class="product-box">
-      <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/2/n/0/m-skyblue-check-jai-textiles-original-imahc7n9fccgegxj.jpeg?q=70&crop=false" alt="Pant 8">
-      <h3>Jeans</h3>
-      <a href="https://www.wishlink.com/share/xmj6w" class="buy-button" target="_blank">Buy Now</a>
-    </div>
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/2/n/0/m-skyblue-check-jai-textiles-original-imahc7n9fccgegxj.jpeg?q=70&crop=false" alt="Pant 4">
-    
-                <h3>Track Pants</h3>
-    
-                <a href="https://dl.flipkart.com/s/zkgNHCuuuN" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-        </div>
-    
-    
-    
-        <!-- Sarees Section -->
-    
-        <div class="category-section" id="sarees" style="display: none;">
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/kzblocw0/sari/8/y/g/free-005-vijoty-unstitched-original-imagbcz4sfgne72c.jpeg?q=70&crop=false" alt="Saree 1">
-    
-                <h3>Designer Saree</h3>
-    
-                <a href="https://www.wishlink.com/share/tgyqe" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    <div class="product-box">
-  <img src="https://rukminim2.flixcart.com/image/1260/1671/xif0q/kurta/v/0/d/xxl-25-ornge-wawlooks-original-imah5kxbp9gxnkyk.jpeg?q=90&crop=false" alt="Pant 1">
-  <h3>Jeans</h3>
-  <a href="https://dl.flipkart.com/s/P1qPjKuuuN" class="buy-button" target="_blank">Buy Now</a>
-</div>
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/sari/c/d/o/free-hatti-superlaxmi-unstitched-original-imagt88gghcu7huz.jpeg?q=70&crop=false" alt="Saree 2">
-    
-                <h3>Party Wear Saree</h3>
-    
-                <a href="https://www.wishlink.com/share/3jxcj" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/sari/q/h/t/free-hatti-superlaxmi-unstitched-original-imagyugptw4fnxd8.jpeg?q=70&crop=false" alt="Saree 3">
-    
-                <h3>Wedding Saree</h3>
-    
-                <a href="https://www.wishlink.com/share/fvm82" class="buy-button" target="_blank">Buy Now</a>
-    
-            </div>
-    
-            <div class="product-box">
-    
-                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shopsy-sari/h/v/o/free-jacquard-silk-blend-kanjivaram-banarasi-dailywear-saree-152-original-imahbbhmtheyh3tv.jpeg?q=70&crop=false" alt="Saree 4">
-    
-                <h3>Traditional Saree</h3>
-    
-                <a href="https://www.wishlink.com/share/hwg8r" class="buy-button" target="_blank">Buy Now</a>
-    
-        
-    
-        </div>
-    
-    </main>
-    
-    
-    
-    <script src="script.js"></script>
-    
-    </body></html>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container">
+        <h2 class="section-title">Why Choose Macha Deals</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3>Free Shipping</h3>
+                <p>On orders over $50. Fast and reliable delivery to your doorstep.
